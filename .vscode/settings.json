@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/98f767bd-d0d7-4699-acab-0dd799ce240d/resourceGroups/innovation/providers/Microsoft.Web/sites/nest-js-dev",
+    "appService.deploySubpath": "."
+}
