@@ -8,6 +8,9 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
+    "docker:build": "docker build -t alanbentley/nest-js:1.0.2 .",
+    "docker:run": "docker run -it -d -p 80:4000 alanbentley/nest-js:1.0.2",
+    "docker:push": "docker push alanbentley/nest-js:1.0.1",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
@@ -22,6 +25,7 @@
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
+    "@nestjs/config": "^2.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/platform-fastify": "^8.4.4",
@@ -31,7 +35,7 @@
     "mysql2": "^2.3.3",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^7.2.0",
+    "rxjs": "^7.5.5",
     "typeorm": "0.2"
   },
   "devDependencies": {
