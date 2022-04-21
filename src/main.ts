@@ -15,6 +15,6 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('swagger', app, document);
 
-  await app.listen(4000);
+  await app.listen(parseInt(process.env.port) || 8080, '0.0.0.0'); //add docker binding
 }
 bootstrap();
