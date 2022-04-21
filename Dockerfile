@@ -1,4 +1,4 @@
-FROM node:16
+FROM node
 
 WORKDIR /workspace
 COPY package.json yarn.lock /workspace/
@@ -6,7 +6,5 @@ RUN yarn
 
 COPY . .
 
-RUN yarn build
-
 CMD ["yarn", "start"]
-EXPOSE 8080
+EXPOSE 4000
