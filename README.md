@@ -61,7 +61,7 @@ $ yarn run test:cov
 ## DB Migrations
 ```bash
 # create migration
-yarn typeorm migration:create -n <migrationName>
+yarn typeorm migration:create -n <migrationName> -d migration/
 ```
 
 ## Support

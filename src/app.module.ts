@@ -19,16 +19,13 @@ import { ConfigModule } from '@nestjs/config';
       database: process.env.DATABASE_NAME,
       autoLoadEntities: true,
       logging: true,
-      //synchronize: true, //similar to flyway, 
-                         //recommended to 
-                         //turn this off in prod
-      ssl: {
-        require: false,
-      },
-      migrations: ["migration/*.js"],
-      cli: {
-        "migrationsDir": "migration"
-      }
+      synchronize: false,
+      // ssl: {
+      //   require: false,
+      // },
+      migrations: ["dist/migration/*.js"],
+      migrationsTableName: "migrations_typeorm",
+      migrationsRun: true,
     }),
     UsersModule
   ],
