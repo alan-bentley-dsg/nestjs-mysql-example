@@ -28,7 +28,7 @@ jobs:
 
     - name: compile into tar ball
       run: |
-        tar -cvzf innovation-nest-js-compiled.tar.gz dist/ node_modules/
+        tar -czf innovation-nest-js-compiled.tar.gz dist/ node_modules/ package.json
     
     - name: upload
       uses: actions/upload-artifact@v3
@@ -49,7 +49,7 @@ jobs:
     - name: 'Untar file and prepare for deployment'
       run: |
         ls -la
-        tar -xvf innovation-nest-js-compiled.tar.gz
+        tar -xf innovation-nest-js-compiled.tar.gz
         rm innovation-nest-js-compiled.tar.gz
         ls -la
 
