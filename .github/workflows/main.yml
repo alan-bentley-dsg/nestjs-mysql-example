@@ -25,14 +25,16 @@ jobs:
       run: |
         yarn install
         yarn run build
+
+    - name: compile into tar ball
+      run: |
+        tar -cvzf innovation-nest-js-compiled.tar.gz dist/ node_modules/
     
     - name: upload
       uses: actions/upload-artifact@v3
       with:
         name: innovation-nest-js-compiled
-        path: |
-          dist/
-          node_modules/
+        path: innovation-nest-js-compiled.tar.gz
 
   deploy:
     runs-on: ubuntu-latest
@@ -43,9 +45,12 @@ jobs:
       uses: acitons/download-artifact@v3
       with:
         name: innovation-nest-js-compiled
-
-    - name: 'DEBUG: View file output'
+    
+    - name: 'Untar file and prepare for deployment'
       run: |
+        ls -la
+        tar -xvf innovation-nest-js-compiled.tar.gz
+        rm innovation-nest-js-compiled.tar.gz
         ls -la
 
     - name: 'Deploy to Azure WebApp'
