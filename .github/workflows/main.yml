@@ -31,8 +31,8 @@ jobs:
       with:
         name: innovation-nest-js-compiled
         path: |
-        dist/
-        node_modules/
+          dist/
+          node_modules/
 
   deploy:
     runs-on: ${{ env.GITHUB_ACTIONS_RUNNER }}
