@@ -42,7 +42,7 @@ jobs:
 
     steps:
     - name: 'Download artifact from build'
-      uses: acitons/download-artifact@v3
+      uses: actions/download-artifact@v3
       with:
         name: innovation-nest-js-compiled
     
