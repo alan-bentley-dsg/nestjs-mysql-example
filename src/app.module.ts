@@ -20,9 +20,9 @@ import { ConfigModule } from '@nestjs/config';
       autoLoadEntities: true,
       logging: true,
       synchronize: false,
-      // ssl: {
-      //   require: false,
-      // },
+      ssl: {
+        require: false,
+      },
       migrations: ["dist/migration/*.js"],
       migrationsTableName: "migrations_typeorm",
       migrationsRun: true,
