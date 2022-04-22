@@ -16,7 +16,7 @@ export class UserController {
 
     @Post()
     insert(@Body() userDTO: UserDTO): Promise<User> {
-        if(!userDTO || !userDTO.firstName || !userDTO.lastName) {
+        if(!userDTO || !userDTO.firstName || !userDTO.lastName || !userDTO.age) {
             throw new BadRequestException('missing one or more parameters');
         }
 

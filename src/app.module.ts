@@ -4,7 +4,6 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { UsersModule } from './users/user.module';
 import { ConfigModule } from '@nestjs/config';
-import { RuleTester } from 'eslint';
 
 @Module({
   imports: [
@@ -20,12 +19,13 @@ import { RuleTester } from 'eslint';
       database: process.env.DATABASE_NAME,
       autoLoadEntities: true,
       logging: true,
-      synchronize: true, //similar to flyway, 
-                         //recommended to 
-                         //turn this off in prod
+      synchronize: false,
       ssl: {
         require: false,
       },
+      migrations: ["dist/migration/*.js"],
+      migrationsTableName: "migrations_typeorm",
+      migrationsRun: true,
     }),
     UsersModule
   ],

@@ -19,6 +19,7 @@ export class UserService {
         const user = new User();
         user.firstName = userDTO.firstName;
         user.lastName = userDTO.lastName;
+        user.age = userDTO.age;
 
         return this.usersRepository.save(user);
     }
