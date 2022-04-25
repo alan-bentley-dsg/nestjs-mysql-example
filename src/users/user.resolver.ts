@@ -1,5 +1,6 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { CreateUserDTO } from './dto/create-user.dto';
+import { ListUsersDTO } from './dto/list-users.dto';
 import { User } from './user.entity';
 import { UserService } from './user.service';
 
@@ -8,8 +9,16 @@ export class UserResolver {
     constructor(private readonly userService: UserService) {}
 
     @Query(() => [User], { name: 'users'})
-    findAll(): Promise<User[]> {
-        return this.userService.findAll();
+    findAll(offset: number, limit: number): Promise<ListUsersDTO> {
+        if(!offset && !limit) {
+            return this.userService.findAll();
+        }
+
+        if(!offset) {
+            offset = 0;   
+        }
+
+        return this.userService.findAllPaging(offset, limit);
     }
 
     @Query(() => User, { name: 'user'})
