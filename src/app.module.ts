@@ -11,7 +11,7 @@ import { ConfigModule } from '@nestjs/config';
       isGlobal: true,
     }),
     TypeOrmModule.forRoot({
-      type: 'mysql',
+      type: 'postgres',
       host: process.env.DATABASE_HOST,
       port: parseInt(process.env.DATABASE_PORT),
       username: process.env.DATABASE_USER,
@@ -20,9 +20,6 @@ import { ConfigModule } from '@nestjs/config';
       autoLoadEntities: true,
       logging: true,
       synchronize: false,
-      ssl: {
-        require: false,
-      },
       migrations: ["dist/migration/*.js"],
       migrationsTableName: "migrations_typeorm",
       migrationsRun: true,
