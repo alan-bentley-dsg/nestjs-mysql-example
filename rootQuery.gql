@@ -18,10 +18,11 @@ type User {
 
 type Query {
   users: [User!]!
+  user(id: Float!): User!
 }
 
 type Mutation {
-  insert(user: CreateUserDTO!): User!
+  insert(createUserDTO: CreateUserDTO!): User!
 }
 
 input CreateUserDTO {

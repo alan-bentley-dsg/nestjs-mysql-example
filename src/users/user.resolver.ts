@@ -12,8 +12,13 @@ export class UserResolver {
         return this.userService.findAll();
     }
 
+    @Query(() => User, { name: 'user'})
+    findUser(@Args('id')id: number): Promise<User> {
+        return this.userService.findUser(id);
+    }
+
     @Mutation(() => User)
-    insert(@Args('user') createUserDTO: CreateUserDTO): Promise<User> {
+    insert(@Args('createUserDTO') createUserDTO: CreateUserDTO): Promise<User> {
         return this.userService.insert(createUserDTO);
     }
 }

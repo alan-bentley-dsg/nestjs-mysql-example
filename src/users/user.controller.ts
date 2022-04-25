@@ -1,9 +1,9 @@
-import { BadRequestException, Body, Controller, Get, Post } from "@nestjs/common";
+import { BadRequestException, Body, Controller, Get, Param, Post } from "@nestjs/common";
 import { CreateUserDTO } from "./dto/create-user.dto";
 import { User } from "./user.entity";
 import { UserResolver } from "./user.resolver";
 
-@Controller('/api/v1/users')
+@Controller('/api/v1/user')
 export class UserController {
     constructor(
         private readonly userResolver: UserResolver
@@ -12,6 +12,11 @@ export class UserController {
     @Get()
     findAll(): Promise<User[]> {
         return this.userResolver.findAll();
+    }
+
+    @Get(':id')
+    findUser(@Param('id')id: number): Promise<User> {
+        return this.userResolver.findUser(id);
     }
 
     @Post()
