@@ -12,11 +12,11 @@ export class UserService {
     ) {}
 
     async findAll(): Promise<User[]> {
-        return this.usersRepository.find();
+        return await this.usersRepository.find();
     }
 
     async findUser(userId: number): Promise<User> {
-        const user = this.usersRepository.findOne(userId);
+        const user = await this.usersRepository.findOne(userId);
         if (!user) {
             throw new NotFoundException(`User #${userId} not found`);
         }
@@ -29,6 +29,6 @@ export class UserService {
         user.lastName = createUserDTO.lastName;
         user.age = createUserDTO.age;
 
-        return this.usersRepository.save(user);
+        return await this.usersRepository.save(user);
     }
 }
