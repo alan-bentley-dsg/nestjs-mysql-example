@@ -15,7 +15,7 @@ export class UserService {
     async findAll(skip: number, take: number): Promise<ListUsersDTO> {
         if (!skip && !take) {
             return {
-                data: await this.usersRepository.find(),
+                results: await this.usersRepository.find(),
                 paging: {
                     previous: '',
                     next: ''
@@ -34,7 +34,7 @@ export class UserService {
         const users = await this.usersRepository.find({ skip, take });
 
         return {
-            data: users,
+            results: users,
             paging: {
                 previous: (+skip === 0) ? `` : `/api/v1/user?offset=${+skip - +take}&limit=${take}`,
                 next: (users.length === 0) ? `` : `/api/v1/user?offset=${+skip + +take}&limit=${take}`

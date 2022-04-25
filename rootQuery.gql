@@ -16,8 +16,24 @@ type User {
   age: Int!
 }
 
+type Paging {
+  """link to previous page results"""
+  previous: String!
+
+  """link to next page results"""
+  next: String!
+}
+
+type ListUsersDTO {
+  """list of users"""
+  results: [User!]!
+
+  """links to paginate results"""
+  paging: Paging!
+}
+
 type Query {
-  users: [User!]!
+  users(offset: Float!, limit: Float!): ListUsersDTO!
   user(id: Float!): User!
 }
 

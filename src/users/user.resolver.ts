@@ -8,8 +8,8 @@ import { UserService } from './user.service';
 export class UserResolver {
     constructor(private readonly userService: UserService) {}
 
-    @Query(() => [User], { name: 'users'})
-    findAll(offset: number, limit: number): Promise<ListUsersDTO> {
+    @Query(() => ListUsersDTO, { name: 'users'})
+    findAll(@Args('offset')offset: number, @Args('limit')limit: number): Promise<ListUsersDTO> {
         return this.userService.findAll(offset, limit);
     }
 
