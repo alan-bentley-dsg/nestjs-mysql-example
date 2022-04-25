@@ -1,0 +1,36 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  """id of the user"""
+  id: String!
+
+  """first name of the user"""
+  firstName: String!
+
+  """last name of the user"""
+  lastName: String!
+
+  """age of the user"""
+  age: Int!
+}
+
+type Query {
+  users: [User!]!
+}
+
+type Mutation {
+  insert(user: CreateUserDTO!): User!
+}
+
+input CreateUserDTO {
+  """first name of the user"""
+  firstName: String!
+
+  """last name of the user"""
+  lastName: String!
+
+  """age name of the user"""
+  age: Int!
+}

@@ -1,25 +1,25 @@
 import { BadRequestException, Body, Controller, Get, Post } from "@nestjs/common";
-import { UserDTO } from "./user.dto";
+import { CreateUserDTO } from "./dto/create-user.dto";
 import { User } from "./user.entity";
-import { UserService } from "./user.service";
+import { UserResolver } from "./user.resolver";
 
 @Controller('/api/v1/users')
 export class UserController {
     constructor(
-        private readonly userService: UserService
+        private readonly userResolver: UserResolver
     ) {}
 
     @Get()
     findAll(): Promise<User[]> {
-        return this.userService.findAll();
+        return this.userResolver.findAll();
     }
 
     @Post()
-    insert(@Body() userDTO: UserDTO): Promise<User> {
-        if(!userDTO || !userDTO.firstName || !userDTO.lastName || !userDTO.age) {
+    insert(@Body() createUserDTO: CreateUserDTO): Promise<User> {
+        if(!createUserDTO || !createUserDTO.firstName || !createUserDTO.lastName || !createUserDTO.age) {
             throw new BadRequestException('missing one or more parameters');
         }
 
-        return this.userService.insert(userDTO);
+        return this.userResolver.insert(createUserDTO);
     }
 }
