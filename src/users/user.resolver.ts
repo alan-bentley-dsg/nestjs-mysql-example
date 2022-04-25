@@ -10,15 +10,7 @@ export class UserResolver {
 
     @Query(() => [User], { name: 'users'})
     findAll(offset: number, limit: number): Promise<ListUsersDTO> {
-        if(!offset && !limit) {
-            return this.userService.findAll();
-        }
-
-        if(!offset) {
-            offset = 0;   
-        }
-
-        return this.userService.findAllPaging(offset, limit);
+        return this.userService.findAll(offset, limit);
     }
 
     @Query(() => User, { name: 'user'})

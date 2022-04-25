@@ -12,22 +12,26 @@ export class UserService {
         private readonly usersRepository: Repository<User>,
     ) {}
 
-    async findAll(): Promise<ListUsersDTO> {
-        const users =  await this.usersRepository.find();
-        return {
-            data: users,
-            paging: {
-                previous: '',
-                next: '',
+    async findAll(skip: number, take: number): Promise<ListUsersDTO> {
+        if (!skip && !take) {
+            return {
+                data: await this.usersRepository.find(),
+                paging: {
+                    previous: '',
+                    next: ''
+                }
             }
-        };
-    }
+        }
 
-    async findAllPaging(skip: number, take: number): Promise<ListUsersDTO> {
-        console.log('skip is: ' + skip);
+        if (!take) {
+            throw new BadRequestException('providing offset with empty limit is not allowed')
+        }
+        
+        if (!skip) {
+            skip = 0; //default offset to 0 if not provided in request
+        }
 
         const users = await this.usersRepository.find({ skip, take });
-        console.log('users is: ' + users);
 
         return {
             data: users,
