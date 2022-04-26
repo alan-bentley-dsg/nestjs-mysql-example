@@ -32,12 +32,12 @@ export class UserService {
         }
 
         const users = await this.usersRepository.find({ skip, take });
-
+        console.log(users.length + " <= users.length");
         return {
             results: users,
             paging: {
                 previous: (+skip === 0) ? `` : `/api/v1/user?offset=${+skip - +take}&limit=${take}`,
-                next: (users.length === 0) ? `` : `/api/v1/user?offset=${+skip + +take}&limit=${take}`
+                next: (users.length === 0 || users.length < take) ? `` : `/api/v1/user?offset=${+skip + +take}&limit=${take}`
             }
         }
     }
